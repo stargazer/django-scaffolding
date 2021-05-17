@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  api:
+    build: api/.
+    ports:
+     - "80:8080"
+    volumes:
+     - ./api:/api
+    working_dir: /api/project
+    environment:
+      SECRET_KEY: secret
+    entrypoint: sh /api/entrypoint.sh
+    depends_on:
+     - "db"
+    stdin_open: true
+    tty: true
+
+  db:
+   image: postgres
+   volumes:
+    - ./db/data:/var/lib/postgres/data
+   environment:
+    - POSTGRES_DB=postgres
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres

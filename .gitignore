@@ -1,0 +1,9 @@
+# vim
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# Database data files
+db/*
